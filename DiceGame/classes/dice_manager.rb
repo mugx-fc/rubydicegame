@@ -2,8 +2,6 @@
 
 # my class manager
 class DiceManager
-  attr_reader :dices
-
   def initialize
     roll
   end
