@@ -1,0 +1,32 @@
+{
+	"settings": {
+		"solargraph.formatting": true,
+		"solargraph.autoformat": true,
+		"ruby.lint": {
+			"rubocop": true
+		},
+		"[ruby]": {
+			"editor.defaultFormatter": "castwide.solargraph"
+		}
+	},
+	"folders": [
+		{
+			"path": "DiceGame"
+		}
+	],
+	"launch": {
+		"version": "0.2.0",
+		"env": {
+			"RUBYOPT": "--enable-frozen-string-literal",
+		},
+		"configurations": [
+			{
+				"name": "Debug DiceGame",
+				"type": "Ruby",
+				"request": "launch",
+				"program": "init.rb",
+				"cwd": "${workspaceFolder:DiceGame}"
+			}
+		]
+	}
+}
