@@ -7,11 +7,17 @@
 		},
 		"[ruby]": {
 			"editor.defaultFormatter": "castwide.solargraph"
-		}
+		},
 	},
 	"folders": [
 		{
 			"path": "DiceGame"
+		},
+		{
+			"path": "Wireworld"
+		},
+		{
+			"path": "DiceGameWithOpponent"
 		}
 	],
 	"launch": {
@@ -26,6 +32,20 @@
 				"request": "launch",
 				"program": "init.rb",
 				"cwd": "${workspaceFolder:DiceGame}"
+			},
+			{
+				"name": "Debug Wireworld",
+				"type": "Ruby",
+				"request": "launch",
+				"program": "init.rb",
+				"cwd": "${workspaceFolder:Wireworld}"
+			},
+			{
+				"name": "Debug DiceGameWithOpponent",
+				"type": "Ruby",
+				"request": "launch",
+				"program": "init.rb",
+				"cwd": "${workspaceFolder:DiceGameWithOpponent}"
 			}
 		]
 	}
