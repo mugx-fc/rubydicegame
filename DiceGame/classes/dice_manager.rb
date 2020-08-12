@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# my class manager
 class DiceManager
   def initialize
     roll

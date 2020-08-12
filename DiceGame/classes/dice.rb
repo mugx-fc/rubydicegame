@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# my dice
 class Dice
   attr_reader :value
 

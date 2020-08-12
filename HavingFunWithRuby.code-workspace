@@ -1,23 +1,33 @@
 {
 	"settings": {
 		"solargraph.formatting": true,
-		"solargraph.autoformat": true,
 		"ruby.lint": {
 			"rubocop": true
 		},
 		"[ruby]": {
 			"editor.defaultFormatter": "castwide.solargraph"
 		},
+		"solargraph.autoformat": true,
+		"editor.formatOnSave": true,
+		"editor.formatOnType": true,
+		"editor.formatOnPaste": true,
 	},
 	"folders": [
 		{
+			"name": "DiceGame",
 			"path": "DiceGame"
 		},
 		{
+			"name": "Wireworld",
 			"path": "Wireworld"
 		},
 		{
+			"name": "DiceGameWithOpponent",
 			"path": "DiceGameWithOpponent"
+		},
+		{
+			"name": "CreditCardValidator",
+			"path": "CreditCardValidator"
 		}
 	],
 	"launch": {
