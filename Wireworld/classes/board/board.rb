@@ -39,25 +39,48 @@ class Board
     end
   end
 
+  def activate_electron(mouse_x, mouse_y)
+    index = index_at(mouse_x, mouse_y)
+    @cells[index].activate_electron
+  end
+
+  def deactivate_conductor(mouse_x, mouse_y)
+    index = index_at(mouse_x, mouse_y)
+    @cells[index].deactivate_conductor
+  end
+
+  def activate_conductor(mouse_x, mouse_y)
+    index = index_at(mouse_x, mouse_y)
+    @cells[index].activate_conductor
+  end
+
+  private
+
+  def index_at(mouse_x, mouse_y)
+    col = (mouse_x - mouse_x / @cols) / @cols
+    row = (mouse_y - mouse_y / @rows) / @rows
+    ((row * @cols) + col).ceil
+  end
+
   def electron_neighbours(col, row)
     electron_count = 0
-    electron_count += count_electron_at(col - 1, row)
-    electron_count += count_electron_at(col + 1, row)
-    electron_count += count_electron_n(col, row)
-    electron_count += count_electron_s(col, row)
+    electron_count += count_electron_at(col - 1, row) # w
+    electron_count += count_electron_at(col + 1, row) # e
+    electron_count += count_electron_n(col, row) # n
+    electron_count += count_electron_s(col, row) # s
     electron_count
   end
 
   def count_electron_n(col, row)
-    res = count_electron_at(col, row - 1)
-    res += count_electron_at(col - 1, row - 1)
-    res + count_electron_at(col + 1, row - 1)
+    res = count_electron_at(col, row - 1) # n
+    res += count_electron_at(col - 1, row - 1) # nw
+    res + count_electron_at(col + 1, row - 1) # ne
   end
 
   def count_electron_s(col, row)
-    res = count_electron_at(col, row + 1)
-    res += count_electron_at(col - 1, row + 1)
-    res + count_electron_at(col + 1, row + 1)
+    res = count_electron_at(col, row + 1) # s
+    res += count_electron_at(col - 1, row + 1) # sw
+    res + count_electron_at(col + 1, row + 1) # se
   end
 
   def count_electron_at(col, row)
@@ -65,27 +88,5 @@ class Board
       @cells[(row * @cols) + col].electron? ? 1 : 0
     else 0
     end
-  end
-
-  def activate_electron(mouse_x, mouse_y)
-    col = (mouse_x - mouse_x / @cols) / @cols
-    row = (mouse_y - mouse_y / @rows) / @rows
-    index = ((row * @cols) + col).ceil
-    @cells[index].activate_electron
-  end
-
-  def deactivate_conductor(mouse_x, mouse_y)
-    col = (mouse_x - mouse_x / @cols) / @cols
-    row = (mouse_y - mouse_y / @rows) / @rows
-    index = ((row * @cols) + col).ceil
-    @cells[index].deactivate_conductor
-  end
-
-  def activate_conductor(mouse_x, mouse_y)
-    col = (mouse_x - mouse_x / @cols) / @cols
-    row = (mouse_y - mouse_y / @rows) / @rows
-
-    index = ((row * @cols) + col).ceil
-    @cells[index].activate_conductor
   end
 end

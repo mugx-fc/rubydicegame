@@ -12,11 +12,6 @@ class Cell
     @color == :blue
   end
 
-  def change_color(value)
-    @color = value
-    @square.color = @color.to_s
-  end
-
   def activate_electron
     if @color == :gray
       change_color(:yellow)
@@ -46,5 +41,12 @@ class Cell
   def update
     change_color(@next_color) unless @next_color.nil?
     @next_color = nil
+  end
+
+  private
+
+  def change_color(value)
+    @color = value
+    @square.color = @color.to_s
   end
 end

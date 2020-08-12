@@ -12,18 +12,6 @@ class BoardManager
     tick
   end
 
-  def draw
-    @board.draw
-  end
-
-  def tick
-    every(0.3) do
-      @generation += 1
-      @board.evolve
-      @board.update
-    end
-  end
-
   def activate_electron(mouse_x, mouse_y)
     @board.activate_electron(mouse_x, mouse_y)
     @can_evolve = true
@@ -36,6 +24,20 @@ class BoardManager
 
   def deactivate_conductor(mouse_x, mouse_y)
     @board.deactivate_conductor(mouse_x, mouse_y)
+  end
+
+  private
+
+  def draw
+    @board.draw
+  end
+
+  def tick
+    every(0.3) do
+      @generation += 1
+      @board.evolve
+      @board.update
+    end
   end
 
   def every(seconds)
