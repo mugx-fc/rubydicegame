@@ -8,16 +8,25 @@ class Board
     @cols = 24
     @rows = 24
     @cells = []
+
+    prepare
   end
 
-  def draw
+  def prepare
     (0...@rows).each do |row|
       (0...@cols).each do |col|
         offset = 1
-        cell = Cell.new(col * (@size + offset), row * (@size + offset), @size, :gray)
-        @cells << cell
+        @cells << Cell.new(col * (@size + offset), row * (@size + offset), @size, Gosu::Color::GRAY)
       end
     end
+  end
+
+  def draw
+    @cells.each(&:draw)
+  end
+
+  def update
+    @cells.each(&:update)
   end
 
   def evolve
@@ -26,15 +35,6 @@ class Board
         index = ((row * @cols) + col).ceil
         electron_count = electron_neighbours(col, row)
         @cells[index].evolve(electron_count)
-      end
-    end
-  end
-
-  def update
-    (0...@rows).each do |row|
-      (0...@cols).each do |col|
-        index = ((row * @cols) + col).ceil
-        @cells[index].update
       end
     end
   end
@@ -51,14 +51,14 @@ class Board
 
   def activate_conductor(mouse_x, mouse_y)
     index = index_at(mouse_x, mouse_y)
-    @cells[index].activate_conductor
+    @cells[index].activate_conductor if index < @cells.size
   end
 
   private
 
   def index_at(mouse_x, mouse_y)
-    col = (mouse_x - mouse_x / @cols) / @cols
-    row = (mouse_y - mouse_y / @rows) / @rows
+    col = ((mouse_x - mouse_x / @cols) / @cols).truncate
+    row = ((mouse_y - mouse_y / @rows) / @rows).truncate
     ((row * @cols) + col).ceil
   end
 

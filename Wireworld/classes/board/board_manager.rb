@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './board.rb'
+require_relative 'board.rb'
 
 class BoardManager
   def initialize
@@ -8,8 +8,11 @@ class BoardManager
     @generation = 0
     @can_evolve = true
 
-    draw
     tick
+  end
+
+  def draw
+    @board.draw
   end
 
   def activate_electron(mouse_x, mouse_y)
@@ -27,10 +30,6 @@ class BoardManager
   end
 
   private
-
-  def draw
-    @board.draw
-  end
 
   def tick
     every(0.3) do

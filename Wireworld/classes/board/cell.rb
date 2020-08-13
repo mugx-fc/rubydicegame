@@ -4,37 +4,43 @@ class Cell
   attr_reader :color
 
   def initialize(cell_x, cell_y, size, color)
-    @square = Square.new(x: cell_x, y: cell_y, size: size, color: color.to_s)
+    @cell_x = cell_x
+    @cell_y = cell_y
+    @size = size
     @color = color
   end
 
+  def draw
+    Gosu.draw_rect(@cell_x, @cell_y, @size, @size, @color)
+  end
+
   def electron?
-    @color == :blue
+    @color == Gosu::Color::BLUE
   end
 
   def activate_electron
-    if @color == :gray
-      change_color(:yellow)
-    elsif @color == :yellow
-      change_color(:blue)
+    if @color == Gosu::Color::GRAY
+      change_color(Gosu::Color::YELLOW)
+    elsif @color == Gosu::Color::YELLOW
+      change_color(Gosu::Color::BLUE)
     end
   end
 
   def activate_conductor
-    change_color(:yellow) if @color == :gray
+    change_color(Gosu::Color::YELLOW) if @color == Gosu::Color::GRAY
   end
 
   def deactivate_conductor
-    @next_color = :gray
+    @next_color = Gosu::Color::GRAY
   end
 
   def evolve(electron_neighbours)
-    if @color == :blue
-      @next_color = :red
-    elsif @color == :red
-      @next_color = :yellow
-    elsif @color == :yellow && [1, 2].include?(electron_neighbours)
-      @next_color = :blue
+    if @color == Gosu::Color::BLUE
+      @next_color = Gosu::Color::RED
+    elsif @color == Gosu::Color::RED
+      @next_color = Gosu::Color::YELLOW
+    elsif @color == Gosu::Color::YELLOW && [1, 2].include?(electron_neighbours)
+      @next_color = Gosu::Color::BLUE
     end
   end
 
@@ -47,6 +53,5 @@ class Cell
 
   def change_color(value)
     @color = value
-    @square.color = @color.to_s
   end
 end
