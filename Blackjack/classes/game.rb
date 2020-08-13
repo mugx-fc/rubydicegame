@@ -41,10 +41,14 @@ class Game
     puts "Player score: #{@player.score}, Dealer score: #{@dealer.score}"
     puts 'Cheers, You win :-) !' if win
     puts 'You lost, the dealer wins :-<' unless win
+
     next_round(player_winner: win)
   end
 
   def next_round(player_winner: bool)
+    puts "[Press 'return' to go to the next round]"
+    gets
+
     @round += 1
     @deck.shuffle
     @player.update_round([@deck.pick, @deck.pick], player_winner)

@@ -2,7 +2,8 @@
 
 class Deck
   def initialize
-    @ranks = [:Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, :Jack, :Queen, :King]
+    @ranks = %i[Ace Jack Queen King] + [*2..10]
+    print @ranks
     @colors = %i[♣ ♦ ♥ ♠]
     shuffle
   end
