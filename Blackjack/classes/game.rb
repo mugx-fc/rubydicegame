@@ -9,9 +9,21 @@ class Game
 
     @deck = Deck.new
     @player = Player.new(@deck.pick, @deck.pick)
-    @dealer = Player.new(@deck.pick, @deck.pick)
+    @dealer = Dealer.new(@deck.pick, @deck.pick)
 
-    print_cards
+    print_round
+  end
+
+  def print_round(is_debug = false)
+    puts "\n*** DEBUG ***" if is_debug
+    puts "[Blackjack] round: #{@round}"
+
+    puts '- Player:'
+    puts "  #{@player.description(is_full: is_debug)}"
+
+    puts '- Dealer:'
+    puts "  #{@dealer.description(is_full: is_debug)}"
+    puts "*************\n" if is_debug
   end
 
   def player_hit
@@ -39,26 +51,7 @@ class Game
     @deck.shuffle
     @player.update_round([@deck.pick, @deck.pick], player_winner)
     @dealer.update_round([@deck.pick, @deck.pick], !player_winner)
-  end
-
-  def print_debug
-    puts "[Blackjack] round: #{@round}"
-
-    puts '- Player:'
-    puts "  #{@player}"
-
-    puts '- Dealer:'
-    puts "  #{@dealer}"
-
-    puts '- Deck:'
-    puts "  #{@deck.cards}"
-  end
-
-  private
-
-  def print_cards
-    puts "Player cards: #{@player.cards}"
-    puts "Dealer cards: #{@dealer.cards}"
+    print_round
   end
 
   def dealer_hit

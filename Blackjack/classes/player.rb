@@ -35,6 +35,10 @@ class Player
     result
   end
 
+  def description(_is_full = false)
+    "Cards: #{@cards}, Score: #{score}, Wins: #{@wins}"
+  end
+
   private
 
   def evaluate(rank)
@@ -42,5 +46,15 @@ class Player
     return 11 if %i[Ace Jack].include?(rank)
     return 12 if rank == :Queen
     return 13 if rank == :King
+  end
+end
+
+class Dealer < Player
+  def description(is_full = false)
+    if @cards.size == 2 && !is_full
+      "Cards: #{@cards.first}, Wins: #{@wins}"
+    else
+      "Cards: #{@cards}, Wins: #{@wins}"
+    end
   end
 end
