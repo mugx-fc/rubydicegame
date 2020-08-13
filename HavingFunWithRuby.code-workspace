@@ -12,6 +12,7 @@
 		"editor.formatOnType": true,
 		"editor.formatOnPaste": true,
 		"editor.tabSize": 2,
+		"ruby.useLanguageServer": true,
 	},
 	"folders": [
 		{

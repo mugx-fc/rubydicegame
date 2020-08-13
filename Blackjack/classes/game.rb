@@ -14,16 +14,14 @@ class Game
     print_round
   end
 
-  def print_round(is_debug = false)
-    puts "\n*** DEBUG ***" if is_debug
+  def print_round
     puts "[Blackjack] round: #{@round}"
 
     puts '- Player:'
-    puts "  #{@player.description(is_full: is_debug)}"
+    puts "  #{@player.description}"
 
     puts '- Dealer:'
-    puts "  #{@dealer.description(is_full: is_debug)}"
-    puts "*************\n" if is_debug
+    puts "  #{@dealer.description}"
   end
 
   def player_hit
