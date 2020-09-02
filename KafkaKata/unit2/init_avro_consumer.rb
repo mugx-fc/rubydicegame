@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 require 'avro'
-require_relative './helpers/consumer.rb'
+require_relative './helpers/kafka_client.rb'
 
 schema_json = JSON.parse(File.read('./json/schema.json')).to_json
+schema = Avro::Schema.parse(schema_json)
+reader = Avro::IO::DatumReader.new(schema)
 
-consumer = Consumer.new
-results = consumer.fetch
-consumer.stop
+client = KafkaClient.new
+results = client.fetch
+client.stop
 
-reader = Avro::IO::DatumReader.new(schema_json)
-parsed_json = results.each do |message|
+parsed_results = results.map do |message|
   decoder = Avro::IO::BinaryDecoder.new(StringIO.new(message))
-
-  h = reader.read(decoder)
-  p h
-  h.transform_keys(&:to_sym)
+  reader.read(decoder)
 end
-p parsed_json
+
+puts 'Parsed avro is:'
+p parsed_results
