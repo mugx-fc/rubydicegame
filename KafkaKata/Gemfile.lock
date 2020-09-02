@@ -1,0 +1,25 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    delivery_boy (1.0.1)
+      king_konf (~> 0.3)
+      ruby-kafka (~> 1.0)
+    digest-crc (0.6.1)
+      rake (~> 13.0)
+    king_konf (0.3.7)
+    rake (13.0.1)
+    ruby-kafka (1.2.0)
+      digest-crc
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  delivery_boy
+  ruby-kafka
+
+RUBY VERSION
+   ruby 2.7.1p83
+
+BUNDLED WITH
+   2.1.4
