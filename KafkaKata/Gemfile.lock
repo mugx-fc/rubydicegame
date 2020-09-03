@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/dasch/avro_turf.git
+  revision: db3da918d9b8390e7c4b596eaedc658627719ef9
+  specs:
+    avro_turf (1.2.0)
+      avro (>= 1.7.7, < 1.11)
+      excon (~> 0.71)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -5,6 +13,7 @@ GEM
       multi_json (~> 1)
     digest-crc (0.6.1)
       rake (~> 13.0)
+    excon (0.76.0)
     multi_json (1.15.0)
     rake (13.0.1)
     ruby-kafka (1.2.0)
@@ -15,6 +24,7 @@ PLATFORMS
 
 DEPENDENCIES
   avro
+  avro_turf!
   ruby-kafka
 
 RUBY VERSION

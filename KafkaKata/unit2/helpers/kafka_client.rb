@@ -3,9 +3,10 @@
 require 'kafka'
 
 class KafkaClient
-  def initialize
+  def initialize(topic = 'topic-avro-timezones')
+    @topic = topic
     seed_brokers = ['localhost:9092']
-    @topic_name = 'topic-avro-timezones3'
+    @topic_name = topic
     @client = Kafka.new(seed_brokers)
     @producer = @client.producer
   end

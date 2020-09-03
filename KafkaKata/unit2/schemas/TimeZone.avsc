@@ -1,0 +1,28 @@
+{
+  "type": "record",
+  "name": "TimeZone",
+  "fields": [
+    {
+      "name": "country_code",
+      "type": "string",
+      "doc": "In [the IANA Time Zone Database](https://www.iana.org/time-zones) this is named `cc`."
+    },
+    {
+      "name": "latitude",
+      "type": "int"
+    },
+    {
+      "name": "longitude",
+      "type": "int"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "doc": "In [the IANA Time Zone Database](https://www.iana.org/time-zones) this is named `tz`."
+    },
+    {
+      "name": "offset",
+      "type": "string"
+    }
+  ]
+}

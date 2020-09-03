@@ -3,11 +3,11 @@
 require 'avro'
 require_relative './helpers/kafka_client.rb'
 
-schema_json = JSON.parse(File.read('./json/schema.json')).to_json
+schema_json = JSON.parse(File.read('./data/TimeZone.avsc')).to_json
 schema = Avro::Schema.parse(schema_json)
 reader = Avro::IO::DatumReader.new(schema)
 
-client = KafkaClient.new
+client = KafkaClient.new('topic-avro-timezones')
 results = client.fetch
 client.stop
 

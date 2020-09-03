@@ -3,8 +3,8 @@
 require 'avro'
 require_relative './helpers/kafka_client.rb'
 
-timezones = JSON.parse(File.read('./json/timezones.json'))
-schema_json = JSON.parse(File.read('./json/schema.json')).to_json
+timezones = JSON.parse(File.read('./data/timezones.json'))
+schema_json = JSON.parse(File.read('./data/TimeZone.avsc')).to_json
 schema = Avro::Schema.parse(schema_json)
 writer = Avro::IO::DatumWriter.new(schema)
 
@@ -15,7 +15,7 @@ serialized_timezones = timezones.map do |timezone|
   buffer.string
 end
 
-client = KafkaClient.new
+client = KafkaClient.new('topic-avro-timezones')
 serialized_timezones.each do |timezone|
   client.produce(timezone)
 end

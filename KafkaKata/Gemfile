@@ -4,3 +4,4 @@ ruby '2.7.1'
 
 gem 'ruby-kafka'
 gem 'avro'
+gem 'avro_turf', github: 'dasch/avro_turf'
